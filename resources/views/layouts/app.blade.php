@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>@yield('title')</title>
+    <title>{{ config( 'app.name' ) }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -13,9 +13,17 @@
 <body>
 
 <div class="flex-center position-ref full-height">
+
+    @section('sidebar')
+        <div class="top-right links">
+            <a href="{{ route('home') }}">Home</a>
+        </div>
+    @show
+
     <div class="container">
         @yield('content')
     </div>
+
 </div>
 </body>
 </html>

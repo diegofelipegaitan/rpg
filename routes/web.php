@@ -13,9 +13,9 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
-Route::get('who-to-write-code-in-php', 'ContentController@whoToWriteCode')->name('who-to-write-code-in-php');
+Route::get('how-to-write-code-in-php', 'ContentController@howToWriteCode')->name('how-to-write-code-in-php');
 
 Route::get('why-we-need-objects', 'ContentController@whyWeNeedObjects')->name('why-we-need-objects');
 

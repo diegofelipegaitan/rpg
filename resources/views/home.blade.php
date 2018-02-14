@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', config( 'app.name' ) )
+@section('sidebar')
+@endsection
 
 @section('content')
     <div class="content">
@@ -12,7 +13,7 @@
     <div>
 
         <ul>
-            <li><a href="{{ route( 'who-to-write-code-in-php' ) }}" >How to write conde in PHP</a></li>
+            <li><a href="{{ route( 'how-to-write-code-in-php' ) }}" >How to write code in PHP</a></li>
             <li><a href="{{ route( 'why-we-need-objects' ) }}">Why we need objects</a></li>
             <li><a href="{{ route( 'encapsulation-getters-setters' ) }}">Encapsulation, getters and setters</a></li>
             <li><a href="{{ route( 'inheritance-abstraction' ) }}">Inheritance and Abstraction</a></li>

@@ -7,24 +7,24 @@ use Illuminate\Http\Request;
 class ContentController extends Controller
 {
 
-    public function whoToWriteCode(Request $request)
+    public function howToWriteCode(Request $request)
     {
-        dd(__FUNCTION__);
+        return view( 'content.howToWriteCode' );
     }
 
     public function whyWeNeedObjects(Request $request)
     {
-        dd(__FUNCTION__);
+        return view( 'content.whyWeNeedObjects' );
     }
 
     public function encapsulationGettersSetters(Request $request)
     {
-        dd(__FUNCTION__);
+        return view( 'content.encapsulationGettersSetters' );
     }
 
     public function inheritanceAbstraction(Request $request)
     {
-        dd(__FUNCTION__);
+        return view( 'content.inheritanceAbstraction' );
     }
 
     public function interactionBetweenObjects(Request $request)
