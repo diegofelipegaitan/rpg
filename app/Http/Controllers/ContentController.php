@@ -27,54 +27,29 @@ class ContentController extends Controller
         return view( 'content.inheritanceAbstraction' );
     }
 
-    public function interactionBetweenObjects(Request $request)
-    {
-        dd(__FUNCTION__);
-    }
-
     public function interfacesPolymorphism(Request $request)
     {
-        dd(__FUNCTION__);
+        return view( 'content.interfacesPolymorphism' );
     }
 
     public function autoloadingMamespaces(Request $request)
     {
-        dd(__FUNCTION__);
-    }
-
-    public function composerPsr4(Request $request)
-    {
-        dd(__FUNCTION__);
-    }
-
-    public function factoryValueObjects(Request $request)
-    {
-        dd(__FUNCTION__);
-    }
-
-    public function refactor(Request $request)
-    {
-        dd(__FUNCTION__);
+        return view( 'content.autoloadingMamespaces' );
     }
 
     public function staticMethodsProperties(Request $request)
     {
-        dd(__FUNCTION__);
+        return view( 'content.staticMethodsProperties' );
     }
 
-    public function constructores(Request $request)
+    public function overloading(Request $request)
     {
-        dd(__FUNCTION__);
+        return view( 'content.overloading' );
     }
 
-    public function facadesInterfaces(Request $request)
+    public function traits(Request $request)
     {
-        dd(__FUNCTION__);
-    }
-
-    public function constants(Request $request)
-    {
-        dd(__FUNCTION__);
+        return view( 'content.traits' );
     }
 
 }

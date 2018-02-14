@@ -17,3 +17,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
 mix.styles([
     'resources/assets/css/all.css'
 ], 'public/css/all.css');
+
+mix.styles([
+    'resources/assets/css/fix_flex_center.css'
+], 'public/css/fix_flex_center.css');
