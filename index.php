@@ -52,6 +52,8 @@ abstract class Unit
     public function die()
     {
         show("{$this->getName()} dies");
+
+        exit();
     }
 
 }
@@ -60,6 +62,13 @@ class Soldier extends Unit
 {
 
     protected $damage = 40;
+    protected $armor = null;
+
+    public function __construct($name,Armor $armor = null)
+    {
+        $this->armor = $armor;
+        parent::__construct($name);
+    }
 
     public function attack(Unit $opponent)
     {
@@ -69,7 +78,10 @@ class Soldier extends Unit
 
     public function takaDamage($damage)
     {
-        parent::takaDamage($damage / 2);
+        if( $this->armor ){
+            $damage = $this->armor->absorbDamage($damage);
+        }
+        parent::takaDamage($damage);
     }
 
 }
@@ -87,14 +99,26 @@ class Archer extends Unit
 
     public function takaDamage($damage)
     {
-        if(!rand(0,2)) {
+        if(!rand(0,1)) {
             parent::takaDamage($damage );
         }
     }
 
 }
 
-$felipe = new Soldier("Felipe");
+class Armor
+{
+
+    public function absorbDamage($damage)
+    {
+        return $damage/2;
+    }
+
+}
+
+$felipe = new Soldier("Felipe",new Armor() );
 $diego  = new Archer("Diego");
+
+$diego->attack($felipe);
 $diego->attack($felipe);
 $felipe->attack($diego);
