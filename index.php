@@ -6,14 +6,26 @@ function show($message)
     echo "$message\n";
 }
 
+interface Armor
+{
+    public function absorbDamage($damage);
+}
+
 abstract class Unit
 {
-    protected $hp = 40;
+    protected $hp = 100;
     protected $name;
+    protected $armor;
+
 
     public function __construct($name)
     {
         $this->name = $name;
+    }
+
+    public function setArmor(Armor $armor)
+    {
+        $this->armor = $armor;
     }
 
     abstract function attack(Unit $opponent);
@@ -23,20 +35,24 @@ abstract class Unit
         show("{$this->name} walks towards $direction");
     }
 
-    public function takaDamage($damage)
+    public function takeDamage($damage)
     {
 
-        $this->setHp($this->hp - $damage);
+        $this->hp -= $this->absorbDamage($damage);
+        show("{$this->getName()} has {$this->getHp()} points");
+
         if ($this->hp <= 0) {
             $this->die();
         }
 
     }
 
-    private function setHp($hp)
+    protected function absorbDamage($damage)
     {
-        $this->hp = $hp;
-        show("{$this->getName()} has {$this->getHp()} points");
+        if ($this->armor) {
+            $damage = $this->armor->absorbDamage($damage);
+        }
+        return $damage;
     }
 
     public function getName()
@@ -62,26 +78,17 @@ class Soldier extends Unit
 {
 
     protected $damage = 40;
-    protected $armor = null;
+    protected $armor  = null;
 
-    public function __construct($name,Armor $armor = null)
+    public function __construct($name)
     {
-        $this->armor = $armor;
         parent::__construct($name);
     }
 
     public function attack(Unit $opponent)
     {
         show("{$this->name} swing his sword to {$opponent->getName()}");
-        $opponent->takaDamage($this->damage);
-    }
-
-    public function takaDamage($damage)
-    {
-        if( $this->armor ){
-            $damage = $this->armor->absorbDamage($damage);
-        }
-        parent::takaDamage($damage);
+        $opponent->takeDamage($this->damage);
     }
 
 }
@@ -94,31 +101,72 @@ class Archer extends Unit
     public function attack(Unit $opponent)
     {
         show("{$this->name} throw an arrow to {$opponent->getName()}");
-        $opponent->takaDamage($this->damage);
+        $opponent->takeDamage($this->damage);
     }
 
-    public function takaDamage($damage)
-    {
-        if(!rand(0,1)) {
-            parent::takaDamage($damage );
-        }
-    }
 
 }
 
-class Armor
+class BronzeArmor implements Armor
 {
 
     public function absorbDamage($damage)
     {
-        return $damage/2;
+        return $damage / 2;
     }
 
 }
 
-$felipe = new Soldier("Felipe",new Armor() );
-$diego  = new Archer("Diego");
+class SilverArmor implements Armor
+{
 
-$diego->attack($felipe);
-$diego->attack($felipe);
-$felipe->attack($diego);
+    public function absorbDamage($damage)
+    {
+        return $damage / 3;
+    }
+
+}
+
+class GoldArmor implements Armor
+{
+
+    public function absorbDamage($damage)
+    {
+        return $damage / 5;
+    }
+
+}
+
+class CursedArmor implements Armor
+{
+
+    public function absorbDamage($damage)
+    {
+        return $damage * 2;
+    }
+
+}
+
+class EvasionArmor implements Armor
+{
+
+    public function absorbDamage($damage)
+    {
+        if (rand(0, 10)) {
+            show("The attack was evaded");
+            return 0;
+        }
+        return $damage;
+    }
+
+}
+
+$felipe = new Soldier("Felipe");
+$diego  = new Soldier("Diego");
+$diego->setArmor(new GoldArmor);
+$felipe->setArmor(new EvasionArmor);
+
+while (true) {
+    $diego->attack($felipe);
+    $felipe->attack($diego);
+}
