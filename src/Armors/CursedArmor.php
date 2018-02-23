@@ -5,6 +5,8 @@
  * Time: 8:56 PM
  */
 
+namespace Game\Armors;
+
 class CursedArmor implements Armor
 {
 

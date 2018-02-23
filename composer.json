@@ -1,5 +1,16 @@
 {
-    "require": {
-        "phpunit/phpunit": "^7.0"
+    "name": "diegogaitan/rpg",
+    "description": "RPG problem",
+    "authors": [
+        {
+            "name": "Diego Gaitán",
+            "email": "diego.felipe.gaitan.81@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Game\\": "src/"
+        }
     }
 }

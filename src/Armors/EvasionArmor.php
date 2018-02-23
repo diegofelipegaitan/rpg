@@ -6,6 +6,8 @@
  * Time: 8:57 PM
  */
 
+namespace Game\Armors;
+
 class EvasionArmor implements Armor
 {
 

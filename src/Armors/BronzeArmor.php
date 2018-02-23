@@ -5,6 +5,8 @@
  * Time: 8:53 PM
  */
 
+namespace Game\Armors;
+
 class BronzeArmor implements Armor
 {
 

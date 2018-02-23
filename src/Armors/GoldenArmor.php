@@ -6,6 +6,8 @@
  * Time: 8:55 PM
  */
 
+namespace Game\Armors;
+
 class GoldenArmor implements Armor
 {
 

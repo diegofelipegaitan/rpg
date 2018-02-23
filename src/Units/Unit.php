@@ -5,6 +5,10 @@
  * Time: 8:42 PM
  */
 
+namespace Game\Units;
+
+use Game\Armors\Armor;
+
 abstract class Unit
 {
     protected $hp = 100;

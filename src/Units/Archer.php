@@ -5,6 +5,8 @@
  * Time: 8:44 PM
  */
 
+namespace Game\Units;
+
 class Archer extends Unit
 {
 
