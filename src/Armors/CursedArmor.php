@@ -10,7 +10,7 @@ namespace Game\Armors;
 class CursedArmor implements Armor
 {
 
-    public function absorbDamage($damage)
+    public function absorbDamage($damage, Unit $unit)
     {
         return $damage * 2;
     }

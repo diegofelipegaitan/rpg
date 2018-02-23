@@ -8,12 +8,22 @@
 namespace Game\Units;
 
 use Game\Armors\Armor;
+use Game\Weapons\Weapon;
 
 abstract class Unit
 {
-    protected $hp = 100;
+    protected $hp = 50;
     protected $name;
-    protected $armor;
+
+    /**
+     * @var Armor|null
+     */
+    protected $armor  = null;
+
+    /**
+     * @var Weapon|null
+     */
+    protected $weapon = null;
 
 
     public function __construct($name)
@@ -21,12 +31,20 @@ abstract class Unit
         $this->name = $name;
     }
 
+    public function setWeapon( Weapon $weapon )
+    {
+        $this->weapon = $weapon;
+    }
+
     public function setArmor(Armor $armor)
     {
         $this->armor = $armor;
     }
 
-    abstract function attack(Unit $opponent);
+    public function attack(Unit $opponent){
+        show($this->weapon->getDescription( $this , $opponent ));
+        $opponent->takeDamage($this->weapon->getDamage());
+    }
 
     public function move($direction)
     {
@@ -36,10 +54,13 @@ abstract class Unit
     public function takeDamage($damage)
     {
 
-        $this->hp -= $this->absorbDamage($damage);
+        $this->hp -= round($this->absorbDamage($damage));
+        if( $this->hp < 0 ){
+            $this->hp = 0;
+        }
         show("{$this->getName()} has {$this->getHp()} points");
 
-        if ($this->hp <= 0) {
+        if (!$this->hp) {
             $this->die();
         }
 
@@ -48,7 +69,7 @@ abstract class Unit
     protected function absorbDamage($damage)
     {
         if ($this->armor) {
-            $damage = $this->armor->absorbDamage($damage);
+            $damage = $this->armor->absorbDamage($damage , $this);
         }
         return $damage;
     }

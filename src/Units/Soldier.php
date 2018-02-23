@@ -10,18 +10,4 @@ namespace Game\Units;
 class Soldier extends Unit
 {
 
-    protected $damage = 40;
-    protected $armor  = null;
-
-    public function __construct($name)
-    {
-        parent::__construct($name);
-    }
-
-    public function attack(Unit $opponent)
-    {
-        show("{$this->name} swing his sword to {$opponent->getName()}");
-        $opponent->takeDamage($this->damage);
-    }
-
 }

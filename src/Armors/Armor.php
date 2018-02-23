@@ -7,7 +7,9 @@
 
 namespace Game\Armors;
 
+use Game\Units\Unit;
+
 interface Armor
 {
-    public function absorbDamage($damage);
+    public function absorbDamage($damage , Unit $unit);
 }

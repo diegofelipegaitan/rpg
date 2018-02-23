@@ -7,10 +7,12 @@
 
 namespace Game\Armors;
 
+use Game\Units\Unit;
+
 class SilverArmor implements Armor
 {
 
-    public function absorbDamage($damage)
+    public function absorbDamage($damage, Unit $unit)
     {
         return $damage / 3;
     }
