@@ -7,7 +7,14 @@
 
 namespace Game\Units;
 
+use Game\Weapons\Weapon;
+
 class Archer extends Unit
 {
+
+    public function __construct($name, Weapon $weapon = null)
+    {
+        parent::__construct($name, $weapon);
+    }
 
 }

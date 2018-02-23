@@ -7,17 +7,8 @@
 
 namespace Game\Weapons;
 
-
-use Game\Units\Unit;
-
-class BasicBow extends Weapon
+class BasicBow extends Bow
 {
-    protected $damage = 20;
-
-    public function getDescription(Unit $attacker, Unit $opponent)
-    {
-        return "{$attacker->getName()} throw an arrow to {$opponent->getName()}";
-
-    }
+    protected $damage = 15;
 
 }

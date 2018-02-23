@@ -18,7 +18,7 @@ abstract class Unit
     /**
      * @var Armor|null
      */
-    protected $armor  = null;
+    protected $armor = null;
 
     /**
      * @var Weapon|null
@@ -26,12 +26,13 @@ abstract class Unit
     protected $weapon = null;
 
 
-    public function __construct($name)
+    public function __construct($name, Weapon $weapon = null)
     {
         $this->name = $name;
+        $this->weapon = $weapon;
     }
 
-    public function setWeapon( Weapon $weapon )
+    public function setWeapon(Weapon $weapon)
     {
         $this->weapon = $weapon;
     }
@@ -41,21 +42,20 @@ abstract class Unit
         $this->armor = $armor;
     }
 
-    public function attack(Unit $opponent){
-        show($this->weapon->getDescription( $this , $opponent ));
-        $opponent->takeDamage($this->weapon->getDamage());
-    }
-
-    public function move($direction)
+    public function attack(Unit $opponent)
     {
-        show("{$this->name} walks towards $direction");
+        if( !$this->weapon ){
+            throw new \Exception( "{$this->getName()} can not attack whitout an Weapon" );
+        }
+        show($this->weapon->getDescription($this, $opponent));
+        $opponent->takeDamage($this->weapon->getDamage());
     }
 
     public function takeDamage($damage)
     {
 
         $this->hp -= round($this->absorbDamage($damage));
-        if( $this->hp < 0 ){
+        if ($this->hp < 0) {
             $this->hp = 0;
         }
         show("{$this->getName()} has {$this->getHp()} points");
@@ -69,7 +69,7 @@ abstract class Unit
     protected function absorbDamage($damage)
     {
         if ($this->armor) {
-            $damage = $this->armor->absorbDamage($damage , $this);
+            $damage = $this->armor->absorbDamage($damage, $this);
         }
         return $damage;
     }
@@ -89,6 +89,11 @@ abstract class Unit
         show("{$this->getName()} dies");
 
         exit();
+    }
+
+    public function move($direction)
+    {
+        show("{$this->name} walks towards $direction");
     }
 
 }

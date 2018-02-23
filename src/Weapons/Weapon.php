@@ -10,15 +10,11 @@ namespace Game\Weapons;
 
 use Game\Units\Unit;
 
-abstract class Weapon
+interface Weapon
 {
-    protected $damage = 0;
 
-    public function getDamage()
-    {
-        return $this->damage;
-    }
+    public function getDamage();
 
-    abstract public function getDescription(Unit $attacker,Unit $opponent);
+    public function getDescription(Unit $attacker,Unit $opponent);
 
 }

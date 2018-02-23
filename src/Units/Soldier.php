@@ -7,7 +7,14 @@
 
 namespace Game\Units;
 
+use Game\Weapons\Sword;
+
 class Soldier extends Unit
 {
+
+    public function __construct($name, Sword $weapon = null)
+    {
+        parent::__construct($name, $weapon);
+    }
 
 }
