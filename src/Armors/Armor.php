@@ -1,12 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: diegogaitan
+ * User: Diego Gaitán
  * Date: 22/02/18
  * Time: 8:49 PM
  */
 
-class Armor
+interface Armor
 {
-
+    public function absorbDamage($damage);
 }

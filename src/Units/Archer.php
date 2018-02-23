@@ -1,12 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: diegogaitan
+ * User: Diego Gaitán
  * Date: 22/02/18
  * Time: 8:44 PM
  */
 
-class Archer
+class Archer extends Unit
 {
+
+    protected $damage = 20;
+
+    public function attack(Unit $opponent)
+    {
+        show("{$this->name} throw an arrow to {$opponent->getName()}");
+        $opponent->takeDamage($this->damage);
+    }
+
 
 }

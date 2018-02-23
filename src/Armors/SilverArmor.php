@@ -1,12 +1,16 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: diegogaitan
+ * User: Diego Gaitán
  * Date: 22/02/18
  * Time: 8:54 PM
  */
 
-class SilverArmor
+class SilverArmor implements Armor
 {
+
+    public function absorbDamage($damage)
+    {
+        return $damage / 3;
+    }
 
 }

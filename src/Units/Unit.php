@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: diegogaitan
+ * User: Diego Gaitán
  * Date: 22/02/18
  * Time: 8:42 PM
  */
