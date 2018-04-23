@@ -4,11 +4,11 @@ include "../vendor/autoload.php";
 include "../src/utils.php";
 
 
-$felipe = new \Game\Units\Soldier("Felipe", new \Game\Weapons\BasicSword);
-$diego  = new \Game\Units\Archer("Diego", new \Game\Weapons\BasicBow);
+$felipe = new \Game\Units\Soldier("Felipe", new \Game\Weapons\Sword\LongSword);
+$diego  = new \Game\Units\Archer("Diego", new \Game\Weapons\Bow\CrossBow);
 
-$diego->setArmor(new \Game\Armors\EvasionArmor);
-$felipe->setArmor(new \Game\Armors\SilverArmor);
+$felipe->setArmor(new \Game\Armors\EvasionArmor);
+$diego->setArmor(new \Game\Armors\AbsorbArmor);
 
 try {
     while (true) {

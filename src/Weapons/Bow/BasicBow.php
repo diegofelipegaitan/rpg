@@ -5,10 +5,13 @@
  * Time: 9:57 PM
  */
 
-namespace Game\Weapons;
+namespace Game\Weapons\Bow;
+
+use Game\Weapons\Bow;
 
 class BasicBow extends Bow
 {
+
     protected $damage = 15;
 
 }

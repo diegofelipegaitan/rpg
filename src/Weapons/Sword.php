@@ -23,7 +23,7 @@ class Sword implements Weapon
 
     public function getDescription(Unit $attacker, Unit $opponent)
     {
-        return "{$attacker->getName()} swing his sword to {$opponent->getName()}";
+        return "{$attacker->getName()} swings his sword to {$opponent->getName()}";
 
     }
 

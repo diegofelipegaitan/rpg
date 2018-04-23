@@ -7,7 +7,8 @@
             "email": "diego.felipe.gaitan.81@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+    },
     "autoload": {
         "psr-4": {
             "Game\\": "src/"

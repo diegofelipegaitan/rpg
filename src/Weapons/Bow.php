@@ -22,7 +22,7 @@ class Bow implements Weapon
 
     public function getDescription(Unit $attacker, Unit $opponent)
     {
-        return "{$attacker->getName()} throw an arrow to {$opponent->getName()}";
+        return "{$attacker->getName()} throws an arrow to {$opponent->getName()}";
 
     }
 

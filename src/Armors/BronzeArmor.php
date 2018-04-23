@@ -7,6 +7,8 @@
 
 namespace Game\Armors;
 
+use Game\Units\Unit;
+
 class BronzeArmor implements Armor
 {
 
