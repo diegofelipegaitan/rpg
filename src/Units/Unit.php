@@ -8,6 +8,7 @@
 namespace Game\Units;
 
 use Game\Armors\Armor;
+use Game\Armors\MissingArmor;
 use Game\Weapons\Attack;
 use Game\Weapons\Weapon;
 
@@ -15,11 +16,7 @@ class Unit
 {
     protected $hp = 100;
     protected $name;
-
-    /**
-     * @var Armor|null
-     */
-    protected $armor = null;
+    protected $armor;
 
     /**
      * @var Weapon|null
@@ -31,6 +28,7 @@ class Unit
     {
         $this->name   = $name;
         $this->weapon = $weapon;
+        $this->armor  = new MissingArmor();
     }
 
     public function setWeapon(Weapon $weapon)
@@ -66,7 +64,7 @@ class Unit
     public function takeDamage(Attack $attack)
     {
 
-        $this->hp -= round($this->absorbDamage($attack));
+        $this->hp -= round($this->armor->absorbDamage($attack, $this));
         if ($this->hp < 0) {
             $this->hp = 0;
         }
@@ -76,14 +74,6 @@ class Unit
             $this->die();
         }
 
-    }
-
-    protected function absorbDamage(Attack $attack)
-    {
-        if ($this->armor) {
-            return $this->armor->absorbDamage($attack, $this);
-        }
-        return $attack->getDamage();
     }
 
     public function getHp()

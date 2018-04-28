@@ -15,15 +15,19 @@ class CursedArmor extends Armor
 
     public function absorbDamage(Attack $attack, Unit $unit)
     {
-        $damage = $$this->getAbsorbDamage($attack->getDamage());
+        $damage = $this->getAbsorbDamage($attack);
         show("{$unit->getName()} {$unit->getActualHp()} absorb {$damage} damage");
         return $damage;
     }
 
-    public function getAbsorbDamage($damage)
+    public function getAbsorbMagicalDamage(Attack $attack)
     {
-        return floor($damage * 2);
+        return floor($attack->getDamage() * 2);
     }
 
+    public function getAbsorbPhysicalDamage(Attack $attack)
+    {
+        return floor($attack->getDamage() * 1.5);
+    }
 
 }

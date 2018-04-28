@@ -10,9 +10,9 @@ namespace Game\Armors;
 class BronzeArmor extends Armor
 {
 
-    public function getAbsorbDamage($damage)
+    public function getAbsorbPhysicalDamage($attack)
     {
-        return floor( $damage / 2 );
+        return floor( $attack->getDamage() / 2 );
     }
 
 }

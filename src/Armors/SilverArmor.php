@@ -7,12 +7,14 @@
 
 namespace Game\Armors;
 
+use Game\Weapons\Attack;
+
 class SilverArmor extends Armor
 {
 
-    public function getAbsorbDamage($damage)
+    public function getAbsorbPhysicalDamage(Attack $attack)
     {
-        return floor($damage / 3);
+        return floor($attack->getDamage() / 3);
     }
 
 }

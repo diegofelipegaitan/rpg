@@ -13,12 +13,26 @@ use Game\Weapons\Attack;
 abstract class Armor
 {
 
-    abstract public function getAbsorbDamage($damage);
+    public function getAbsorbDamage(Attack $attack){
+        if( $attack->isMagical()){
+            return $this->getAbsorbMagicalDamage($attack);
+        }
+        return $this->getAbsorbPhysicalDamage($attack);
+    }
 
     public function absorbDamage(Attack $attack, Unit $unit)
     {
-        $damage = $this->getAbsorbDamage($attack->getDamage());
+        $damage = $this->getAbsorbDamage($attack);
         show("{$unit->getName()} {$unit->getActualHp()} absorb {$damage} damage");
         return $damage;
     }
+
+    public function getAbsorbMagicalDamage( Attack $attack ){
+        return $attack->getDamage();
+    }
+
+    public function getAbsorbPhysicalDamage( Attack $attack ){
+        return $attack->getDamage();
+    }
+
 }

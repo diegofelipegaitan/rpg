@@ -15,14 +15,14 @@ class GoldenArmor extends Armor
 
     public function absorbDamage(Attack $attack, Unit $unit)
     {
-        $damage = $attack->isPhysical() ? $this->getAbsorbDamage($attack->getDamage()) : $attack->getDamage() * 2;
+        $damage =  $this->getAbsorbDamage($attack);
         show("{$unit->getName()} {$unit->getActualHp()} absorb {$damage} damage");
         return $damage;
     }
 
-    public function getAbsorbDamage($damage)
+    public function getAbsorbMagicalDamage(Attack $attack)
     {
-        return $damage / 5;
+        return $attack->getDamage() / 5;
     }
 
 }

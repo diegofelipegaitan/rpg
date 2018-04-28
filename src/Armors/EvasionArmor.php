@@ -19,12 +19,7 @@ class EvasionArmor extends Armor
             show("{$unit->getName()} evaded the attack");
             return 0;
         }
-        return $this->getAbsorbDamage($attack->getDamage());
-    }
-
-    public function getAbsorbDamage($damage)
-    {
-        return $damage;
+        return $this->getAbsorbDamage($attack);
     }
 
 }
