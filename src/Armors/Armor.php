@@ -9,7 +9,15 @@ namespace Game\Armors;
 
 use Game\Units\Unit;
 
-interface Armor
+abstract class Armor
 {
-    public function absorbDamage($damage , Unit $unit);
+
+    abstract public function getAbsorbDamage($damage);
+
+    public function absorbDamage($damage, Unit $unit)
+    {
+        $damage = $this->getAbsorbDamage($damage);
+        show("{$unit->getName()} {$unit->getActualHp()} absorb {$damage} damage");
+        return $damage;
+    }
 }

@@ -7,14 +7,12 @@
 
 namespace Game\Armors;
 
-use Game\Units\Unit;
-
-class BronzeArmor implements Armor
+class BronzeArmor extends Armor
 {
 
-    public function absorbDamage($damage, Unit $unit)
+    public function getAbsorbDamage($damage)
     {
-        return $damage / 2;
+        return floor( $damage / 2 );
     }
 
 }

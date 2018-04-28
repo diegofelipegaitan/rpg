@@ -10,9 +10,9 @@ namespace Game\Units;
 use Game\Armors\Armor;
 use Game\Weapons\Weapon;
 
-abstract class Unit
+class Unit
 {
-    protected $hp = 50;
+    protected $hp = 100;
     protected $name;
 
     /**
@@ -77,6 +77,10 @@ abstract class Unit
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getActualHp(){
+        return "have {$this->getHp()} hit points and";
     }
 
     public function getHp()

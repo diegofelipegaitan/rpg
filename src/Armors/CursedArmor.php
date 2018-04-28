@@ -14,7 +14,9 @@ class CursedArmor implements Armor
 
     public function absorbDamage($damage, Unit $unit)
     {
-        return $damage * 2;
+        $damage *= 2;
+        show("{$unit->getName()} {$unit->getActualHp()} absorb {$damage} damage");
+        return $damage;
     }
 
 }

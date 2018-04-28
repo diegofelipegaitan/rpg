@@ -9,18 +9,22 @@ namespace Game\Armors;
 
 use Game\Units\Unit;
 
-class AbsorbArmor implements Armor
+class AbsorbArmor extends Armor
 {
 
     public function absorbDamage($damage, Unit $unit)
     {
-        if (true or !rand(0, 4) ) {
-
-            show("{$unit->getName()} absorb the damage");
-            die();
+        if (!rand(0, 10) ) {
+            $damage = $this->getAbsorbDamage($damage);
+            show("{$unit->getActualHp()} {$unit->getName()} absorb {$damage} hit points");
             return -$damage;
         }
         return $damage;
+    }
+
+    public function getAbsorbDamage($damage)
+    {
+        return floor($damage/2);
     }
 
 }

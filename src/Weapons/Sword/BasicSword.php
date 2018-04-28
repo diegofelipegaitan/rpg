@@ -7,11 +7,18 @@
 
 namespace Game\Weapons\Sword;
 
-use Game\Weapons\Sword;
+use Game\Units\Unit;
+use Game\Weapons\Weapon;
 
-class BasicSword extends Sword
+class BasicSword extends Weapon
 {
 
-    protected $damage = 20;
+    protected $damage = 15;
+
+    public function getDescription(Unit $attacker, Unit $opponent)
+    {
+        return "{$attacker->getName()} swings his sword to {$opponent->getName()} and makes {$this->getDamage()} damage";
+
+    }
 
 }

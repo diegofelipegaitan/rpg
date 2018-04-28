@@ -9,15 +9,20 @@ namespace Game\Armors;
 
 use Game\Units\Unit;
 
-class EvasionArmor implements Armor
+class EvasionArmor extends Armor
 {
 
     public function absorbDamage($damage, Unit $unit)
     {
-        if (rand(0, 10)) {
+        if (!rand(0, 10)) {
             show("{$unit->getName()} evaded the attack");
             return 0;
         }
+        return $this->getAbsorbDamage($damage);
+    }
+
+    public function getAbsorbDamage($damage)
+    {
         return $damage;
     }
 
