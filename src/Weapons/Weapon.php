@@ -8,22 +8,16 @@
 namespace Game\Weapons;
 
 
-use Game\Units\Unit;
-
 class Weapon
 {
 
-    protected $damage = 0;
+    protected $damage      = 0;
+    protected $magical     = false;
+    protected $description = ":unit attacks :opponent";
 
-    public function getDamage()
+    public function createAttack()
     {
-        return $this->damage;
-    }
-
-    public function getDescription(Unit $attacker, Unit $opponent)
-    {
-        return "{$attacker->getName()} attacks {$opponent->getName()} and makes {$this->getDamage()} damage";
-
+        return new Attack($this->damage, $this->magical, $this->description);
     }
 
 }

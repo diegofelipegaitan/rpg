@@ -8,15 +8,22 @@
 namespace Game\Armors;
 
 use Game\Units\Unit;
+use Game\Weapons\Attack;
 
-class CursedArmor implements Armor
+class CursedArmor extends Armor
 {
 
-    public function absorbDamage($damage, Unit $unit)
+    public function absorbDamage(Attack $attack, Unit $unit)
     {
-        $damage *= 2;
+        $damage = $$this->getAbsorbDamage($attack->getDamage());
         show("{$unit->getName()} {$unit->getActualHp()} absorb {$damage} damage");
         return $damage;
     }
+
+    public function getAbsorbDamage($damage)
+    {
+        return floor($damage * 2);
+    }
+
 
 }

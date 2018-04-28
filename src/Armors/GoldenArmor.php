@@ -7,8 +7,18 @@
 
 namespace Game\Armors;
 
+use Game\Units\Unit;
+use Game\Weapons\Attack;
+
 class GoldenArmor extends Armor
 {
+
+    public function absorbDamage(Attack $attack, Unit $unit)
+    {
+        $damage = $attack->isPhysical() ? $this->getAbsorbDamage($attack->getDamage()) : $attack->getDamage() * 2;
+        show("{$unit->getName()} {$unit->getActualHp()} absorb {$damage} damage");
+        return $damage;
+    }
 
     public function getAbsorbDamage($damage)
     {

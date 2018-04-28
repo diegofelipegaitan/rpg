@@ -8,6 +8,7 @@
 namespace Game\Units;
 
 use Game\Armors\Armor;
+use Game\Weapons\Attack;
 use Game\Weapons\Weapon;
 
 class Unit
@@ -28,7 +29,7 @@ class Unit
 
     public function __construct($name, Weapon $weapon = null)
     {
-        $this->name = $name;
+        $this->name   = $name;
         $this->weapon = $weapon;
     }
 
@@ -42,19 +43,30 @@ class Unit
         $this->armor = $armor;
     }
 
+    /**
+     * @param Unit $opponent
+     * @throws \Exception
+     */
     public function attack(Unit $opponent)
     {
-        if( !$this->weapon ){
-            throw new \Exception( "{$this->getName()} can not attack whitout an Weapon" );
+        if (!$this->weapon) {
+            throw new \Exception("{$this->getName()} can not attack without an Weapon");
         }
-        show($this->weapon->getDescription($this, $opponent));
-        $opponent->takeDamage($this->weapon->getDamage());
+
+        $attack = $this->weapon->createAttack();
+        show($attack->getDescription($this, $opponent));
+        $opponent->takeDamage($attack);
     }
 
-    public function takeDamage($damage)
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function takeDamage(Attack $attack)
     {
 
-        $this->hp -= round($this->absorbDamage($damage));
+        $this->hp -= round($this->absorbDamage($attack));
         if ($this->hp < 0) {
             $this->hp = 0;
         }
@@ -66,21 +78,12 @@ class Unit
 
     }
 
-    protected function absorbDamage($damage)
+    protected function absorbDamage(Attack $attack)
     {
         if ($this->armor) {
-            $damage = $this->armor->absorbDamage($damage, $this);
+            return $this->armor->absorbDamage($attack, $this);
         }
-        return $damage;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function getActualHp(){
-        return "have {$this->getHp()} hit points and";
+        return $attack->getDamage();
     }
 
     public function getHp()
@@ -93,6 +96,11 @@ class Unit
         show("{$this->getName()} dies");
 
         exit();
+    }
+
+    public function getActualHp()
+    {
+        return "have {$this->getHp()} hit points and";
     }
 
     public function move($direction)
